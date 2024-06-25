@@ -1,8 +1,7 @@
-name: OriginsTowny
+name: townyitemsinfo
 version: '0.1.1'
 description: OriginsTowny, was heavily inspired on EMC's lore plugin, much changes will be implemented soonTM.
 main: com.orbismc.itemloretowny.ItemLoreTowny
 api-version: '1.19'
 depend: [ Towny , LuckPerms ]
 author: InjurynSickness
-Folia-Support: True
