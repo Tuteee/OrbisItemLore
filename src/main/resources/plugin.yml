@@ -1,0 +1,8 @@
+name: OriginsTowny
+version: '0.1.1'
+description: A Towny addon plugin that generates historical lore about certain items when they are crafted!
+main: com.orbismc.itemloretowny
+api-version: '1.19'
+depend: [ Towny , LuckPerms ]
+author: InjurynSickness
+Folia-Support: True
