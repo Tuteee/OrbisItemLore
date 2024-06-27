@@ -18,10 +18,10 @@ public class LoreUtil {
     public static List<Component> generateLore(Player player) {
         List<Component> lore = new ArrayList<>();
 
-        lore.add(parseMiniMessage("<dark_gray>Historical Information"));
+        lore.add(parseMiniMessage("<dark_gray>ʜɪsᴛᴏʀɪᴄᴀʟ ɪɴғᴏʀᴍᴀᴛɪᴏɴ"));
         addForgedByToLore(player, lore);
         addOriginToLore(player, lore);
-        lore.add(parseMiniMessage("<!i><gray>Date: " + (TimeUtil.formattedDate)));
+        lore.add(parseMiniMessage("<!i><gray>ᴅᴀᴛᴇ: " + (TimeUtil.formattedDate)));
 
         return lore;
     }
@@ -33,7 +33,7 @@ public class LoreUtil {
         String playerName = player.getName();
 
         if (playerGroup != null) {
-            String forgedByMessage = "<!i><gray>Forged by: ";
+            String forgedByMessage = "<!i><gray>ғᴏʀɢᴇᴅ ʙʏ: ";
             if (!playerGroup.equals("premium") ) {
                 lore.add(parseMiniMessage(forgedByMessage + playerName));
             } else {
@@ -49,9 +49,9 @@ public class LoreUtil {
     }
 
     public static void addOriginToLore(Player player, List<Component> lore) {
-        String originMessage = "<!i><gray>Originated in: ";
-        String unknownOrigin = "Unknown";
-        String wildernessOrigin = "<!i><green>Uncharted Lands";
+        String originMessage = "<!i><gray>ᴏʀɪɢɪɴᴀᴛᴇᴅ ɪɴ: ";
+        String unknownOrigin = "ᴜɴᴋɴᴏᴡɴ";
+        String wildernessOrigin = "<!i><green>ᴡɪʟᴅᴇʀɴᴇss ☠";
         String darkAqua = "<dark_aqua>";
         String gold = "<gold>";
         String gray = "<gray>";
