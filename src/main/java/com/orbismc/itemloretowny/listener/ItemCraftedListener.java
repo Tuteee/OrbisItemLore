@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.Sound;
+import org.bukkit.Location;
 
 public class ItemCraftedListener implements Listener {
 
@@ -15,8 +16,9 @@ public class ItemCraftedListener implements Listener {
         ItemStack result = event.getCurrentItem();
         if (result != null) {
             Player player = (Player) event.getWhoClicked();
+            Location location = player.getLocation();
             ItemLoreManager.applyLore(result, (Player) event.getWhoClicked());
-            player.playSound(player.getLocation(), Sound.BLOCK.ANVIL.USE, 1.0f, 0.3f);
+            player.playSound(location, Sound.BLOCK_ANVIL_USE, 1.0f, 0.3f);
         }
     }
 }
