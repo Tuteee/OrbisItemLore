@@ -16,7 +16,7 @@ public class ItemCraftedListener implements Listener {
         if (result != null) {
             Player player = (Player) event.getWhoClicked();
             ItemLoreManager.applyLore(result, (Player) event.getWhoClicked());
-            player.playSound(player.getLocation(), Sound.ANVIL.USE, 1.0f, 0.3f);
+            player.playSound(player.getLocation(), Sound.BLOCK.ANVIL.USE, 1.0f, 0.3f);
         }
     }
 }
