@@ -1,5 +1,5 @@
 name: itemloretowny
-version: '0.1.1'
+version: '0.1.2'
 description: OriginsTowny, was heavily inspired on EMC's lore plugin, much changes will be implemented soonTM.
 main: com.orbismc.itemloretowny.TownyItemLore
 api-version: '1.19'
