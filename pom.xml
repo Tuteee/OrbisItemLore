@@ -6,7 +6,7 @@
 
     <groupId>com.orbismc</groupId>
     <artifactId>TownyItemsInfo</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
     <packaging>jar</packaging>
 
     <name>TownyItemsInfo</name>
