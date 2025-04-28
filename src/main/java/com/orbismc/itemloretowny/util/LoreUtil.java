@@ -6,15 +6,18 @@ import com.palmergames.bukkit.towny.object.Town;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-
-import static com.orbismc.itemloretowny.util.LuckPermsUtil.getPlayerGroup;
+import java.util.regex.Pattern;
 
 public class LoreUtil {
+    // Pattern to identify kill counter lines
+    private static final Pattern PLAYER_KILLS_PATTERN = Pattern.compile(".*[Pp]layers [Ss]lain.*");
+    private static final Pattern MOB_KILLS_PATTERN = Pattern.compile(".*[Mm]onsters [Ss]lain.*");
+
     public static List<Component> generateLore(Player player) {
         List<Component> lore = new ArrayList<>();
 
@@ -26,26 +29,10 @@ public class LoreUtil {
         return lore;
     }
 
-
     public static void addForgedByToLore(Player player, List<Component> lore) {
-        Collection<String> possibleGroups = Arrays.asList("premium");
-        String playerGroup = getPlayerGroup(player, possibleGroups);
         String playerName = player.getName();
-
-        if (playerGroup != null) {
-            String forgedByMessage = "<!i><gray>ғᴏʀɢᴇᴅ ʙʏ: ";
-            if (!playerGroup.equals("premium") ) {
-                lore.add(parseMiniMessage(forgedByMessage + playerName));
-            } else {
-                String gradientColor;
-                if (playerGroup.equals("premium")) {
-                    gradientColor = "<gradient:#ffbf00:#ffdc73:#ffcf40>";
-                } else {
-                    gradientColor = "<bold><gradient:#B61BE1:#D986F0:#B61BE1>";
-                }
-                lore.add(parseMiniMessage(forgedByMessage + gradientColor + playerName));
-            }
-        }
+        String forgedByMessage = "<!i><gray>ғᴏʀɢᴇᴅ ʙʏ: ";
+        lore.add(parseMiniMessage(forgedByMessage + playerName));
     }
 
     public static void addOriginToLore(Player player, List<Component> lore) {
@@ -74,6 +61,39 @@ public class LoreUtil {
                 }
             }
         }
+    }
+
+    public static void updateKillsLore(ItemStack item, int playerKills, int mobKills) {
+        if (item == null || !item.hasItemMeta()) return;
+
+        ItemMeta meta = item.getItemMeta();
+        List<Component> existingLore = meta.lore();
+
+        if (existingLore == null) {
+            existingLore = new ArrayList<>();
+        }
+
+        // Create a new list without the kill counter lines
+        List<Component> newLore = new ArrayList<>();
+        for (Component line : existingLore) {
+            String plainText = line.toString();
+            if (!PLAYER_KILLS_PATTERN.matcher(plainText).matches() &&
+                    !MOB_KILLS_PATTERN.matcher(plainText).matches()) {
+                newLore.add(line);
+            }
+        }
+
+        // Add kill counters if they exist
+        if (playerKills > 0) {
+            newLore.add(parseMiniMessage("<dark_red>ᴘʟᴀʏᴇʀs sʟᴀɪɴ: " + playerKills));
+        }
+
+        if (mobKills > 0) {
+            newLore.add(parseMiniMessage("<dark_green>ᴍᴏɴsᴛᴇʀs sʟᴀɪɴ: " + mobKills));
+        }
+
+        meta.lore(newLore);
+        item.setItemMeta(meta);
     }
 
     public static Component parseMiniMessage(String message) {

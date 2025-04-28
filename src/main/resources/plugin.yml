@@ -1,7 +1,21 @@
-name: itemloretowny
-version: '0.1.3'
-description: OriginsTowny, was heavily inspired on EMC's lore plugin, much changes will be implemented soonTM.
+name: OrbisItemLore
+version: '0.2.0'
+description: Item lore plugin for Towny with kill trackers
 main: com.orbismc.itemloretowny.TownyItemLore
-api-version: '1.19'
-depend: [ Towny , LuckPerms ]
+api-version: '1.21'
+depend: [ Towny ]
 author: InjurynSickness
+
+commands:
+  townylore:
+    description: Main command for TownyItemsInfo plugin
+    usage: /<command> [help|playerscroll|mobscroll]
+    aliases: [ItemLore]
+
+permissions:
+  townylore.scroll.player:
+    description: Allows player to get player kill tracker scrolls
+    default: op
+  townylore.scroll.mob:
+    description: Allows player to get mob kill tracker scrolls
+    default: op
